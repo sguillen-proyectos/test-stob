@@ -1,0 +1,15 @@
+---
+- hosts: all
+  become: true
+  tasks:
+    - name: Update repo
+      git: repo=https://github.com/sguillen-proyectos/test-stob.git dest=/var/www/site update=yes
+
+    - name: Change repo owner
+      file: path=/var/www/site state=directory owner=www-data group=www-data recurse=yes
+
+    - name: Change repo permissions
+      file: path=/var/www/site state=directory mode=755 recurse=yes
+
+    - name: restart-nginx
+      service: name=nginx state=restarted
