@@ -1,0 +1,1 @@
+localhost ansible_user=changeme ansible_password=changeme ansible_become_password=changeme
